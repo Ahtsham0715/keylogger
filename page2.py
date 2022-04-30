@@ -15,7 +15,7 @@ def my_page2():
     alignstr = '%dx%d+%d+%d' % (width, height, (screenwidth - width) / 2, (screenheight - height) / 2)
     root.geometry(alignstr)
     root.resizable(width=False, height=False)
-
+    root.overrideredirect(True)
     GLabel_917=tk.Label(root)
     ft = tkFont.Font(family='Times',size=12)
     GLabel_917["font"] = ft
@@ -42,48 +42,48 @@ def my_page2():
     GLine_82["relief"] = "flat"
     GLine_82.pack(pady=5)
 
-    GLabel_799=tk.Label(root)
-    ft = tkFont.Font(family='Times',size=12)
-    GLabel_799["font"] = ft
-    GLabel_799["fg"] = "#333333"
-    GLabel_799["justify"] = "center"
-    GLabel_799["text"] = "Q2. Why it seems your business involves fraudulent activities? "
-    GLabel_799.pack(pady=10)
+    # GLabel_799=tk.Label(root)
+    # ft = tkFont.Font(family='Times',size=12)
+    # GLabel_799["font"] = ft
+    # GLabel_799["fg"] = "#333333"
+    # GLabel_799["justify"] = "center"
+    # GLabel_799["text"] = "Q2. Why it seems your business involves fraudulent activities? "
+    # GLabel_799.pack(pady=10)
 
-    GLineEdit_407=tk.Entry(root)
-    # GLineEdit_407["borderwidth"] = "1px"
-    ft = tkFont.Font(family='Times',size=12)
-    GLineEdit_407["font"] = ft
-    GLineEdit_407["fg"] = "#333333"
-    GLineEdit_407["justify"] = "left"
-    GLineEdit_407["text"] = "Type Your Answer Here "
-    GLineEdit_407["relief"] = "flat"
-    GLineEdit_407.pack(pady=5)
+    # GLineEdit_407=tk.Entry(root)
+    # # GLineEdit_407["borderwidth"] = "1px"
+    # ft = tkFont.Font(family='Times',size=12)
+    # GLineEdit_407["font"] = ft
+    # GLineEdit_407["fg"] = "#333333"
+    # GLineEdit_407["justify"] = "left"
+    # GLineEdit_407["text"] = "Type Your Answer Here "
+    # GLineEdit_407["relief"] = "flat"
+    # GLineEdit_407.pack(pady=5)
 
-    GLabel_247=tk.Label(root)
-    ft = tkFont.Font(family='Times',size=12)
-    GLabel_247["font"] = ft
-    GLabel_247["fg"] = "#333333"
-    GLabel_247["justify"] = "center"
-    GLabel_247["text"] = "Q3. What are the services or products that you provide ? "
-    GLabel_247.pack(pady=10)
+    # GLabel_247=tk.Label(root)
+    # ft = tkFont.Font(family='Times',size=12)
+    # GLabel_247["font"] = ft
+    # GLabel_247["fg"] = "#333333"
+    # GLabel_247["justify"] = "center"
+    # GLabel_247["text"] = "Q3. What are the services or products that you provide ? "
+    # GLabel_247.pack(pady=10)
 
-    GLineEdit_653=tk.Entry(root, validate=['focusin'])
-    # GLineEdit_653["borderwidth"] = "1px"
-    ft = tkFont.Font(family='Times',size=12)
-    GLineEdit_653["font"] = ft
-    GLineEdit_653["fg"] = "#333333"
-    GLineEdit_653["justify"] = "left"
-    GLineEdit_653["text"] = "Type Your Answer Here "
-    GLineEdit_653["relief"] = "flat"
-    GLineEdit_653.pack(pady=5)
+    # GLineEdit_653=tk.Entry(root, validate=['focusin'])
+    # # GLineEdit_653["borderwidth"] = "1px"
+    # ft = tkFont.Font(family='Times',size=12)
+    # GLineEdit_653["font"] = ft
+    # GLineEdit_653["fg"] = "#333333"
+    # GLineEdit_653["justify"] = "left"
+    # GLineEdit_653["text"] = "Type Your Answer Here "
+    # GLineEdit_653["relief"] = "flat"
+    # GLineEdit_653.pack(pady=5)
 
     GLabel_450=tk.Label(root)
     ft = tkFont.Font(family='Times',size=12)
     GLabel_450["font"] = ft
     GLabel_450["fg"] = "#333333"
     GLabel_450["justify"] = "center"
-    GLabel_450["text"] = "Q4. What kind of payments/transactions are included in your business? "
+    GLabel_450["text"] = "Q2. What kind of payments/transactions are included in your business? "
     GLabel_450.pack(pady=10)
 
     GLineEdit_411=tk.Entry(root)

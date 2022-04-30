@@ -15,7 +15,8 @@ def my_page1():
     alignstr = '%dx%d+%d+%d' % (width, height, (screenwidth - width) / 2, (screenheight - height) / 2)
     root.geometry(alignstr)
     root.resizable(width=False, height=False)
-
+    root.overrideredirect(True)
+    
     GLabel_873=tk.Label(root)
     ft = tkFont.Font(family='Times',size=18)
     GLabel_873["font"] = ft

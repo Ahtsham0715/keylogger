@@ -96,10 +96,10 @@
 #     GLineEdit_411["relief"] = "flat"
 #     GLineEdit_411.pack(pady=5)
 
-#     def GButton_240_command():
-#         with open('check.txt', 'w') as f:
-#             f.write('true')
-#         root.destroy()
+    # def GButton_240_command():
+    #     with open('check.txt', 'w') as f:
+    #         f.write('true')
+    #     root.destroy()
 #         # main_func
 #     GButton_240=tk.Button(root)
 #     GButton_240["bg"] = "#000000"
@@ -115,8 +115,6 @@
 
 # my_page2()
 
-import tkinter as tk
-from tkinter import ttk
 from tkinter import *
 
 # this is a function to get the user input from the text input box
@@ -153,75 +151,82 @@ def getInputBoxValue():
 
 # this is the function called when the button is clicked
 def btnFunction():
-    print('clicked')
+    with open('check.txt', 'w') as f:
+            f.write('true')
+    root.destroy()
 
 
 root = Tk()
 
+
 # This is the section of code which creates the main window
-root.geometry('850x425')
+root.geometry('850x550')
 root.configure(background='white')
-root.title('Department of consumer affairs and national consumer helpline')
+# root.title('Department of consumer affairs and national consumer helpline')
 # root.overrideredirect(True)
 
-# This is the section of code which creates a text input box
-qone = Entry(root, width=45)
-qone.place(x=5, y=99)
+moca_img = PhotoImage(file='moca.png')
 
+# frame = Frame(root, height=50).pack()
 
-# This is the section of code which creates a text input box
-qtwo = Entry(root, width=65)
-qtwo.place(x=420, y=92)
+Label(root, image=moca_img, width=150, height=100, bg='white').place(x=5, y=15)
 
-
-# This is the section of code which creates a text input box
-qthree = Entry(root, width=45)
-qthree.place(x=5, y=184)
-
-
-# This is the section of code which creates a text input box
-qfour = Entry(root, width=65)
-qfour.place(x=420, y=176)
-
-
-# This is the section of code which creates a text input box
-qfive = Entry(root, width=65)
-qfive.place(x=190, y=308)
-
-
+Label(root, text='Department of consumer affairs and national consumer helpline.\nGovernment of India',
+      font=('arial', 15, 'bold'), bg='white').place(x=220, y=40)
 # This is the section of code which creates the a label
 Label(root, text='Answer the following questions to the best of your knowledge. ',
-      bg='white', font=('arial', 12, 'normal')).place(x=163, y=12)
+      bg='white', font=('arial', 12, 'normal')).place(x=5, y=140)
 
-
-# This is the section of code which creates the a label
+# # This is the section of code which creates the a label
 Label(root, text='Ql. Explain about your business model in detail ? ',
-      bg='white', font=('arial', 10, 'normal')).place(x=5, y=60)
+      bg='white', font=('arial', 10, 'normal')).place(x=5, y=190)
+
+# # This is the section of code which creates a text input box
+qone = Entry(root, width=50)
+# qone['text'] = 'Type Your Answer Here'
+qone.place(x=10, y=230)
 
 
-# This is the section of code which creates the a label
+# # This is the section of code which creates the a label
 Label(root, text='Q2. Why it seems your business involves fraudulent activities? ',
-      bg='white', font=('arial', 10, 'normal')).place(x=420, y=61)
+      bg='white', font=('arial', 10, 'normal')).place(x=420, y=190)
 
 
-# This is the section of code which creates the a label
+# # This is the section of code which creates a text input box
+qtwo = Entry(root, width=65)
+qtwo.place(x=420, y=230)
+
+# # This is the section of code which creates the a label
 Label(root, text='Q3. What are the services or products that you provide ? ',
-      bg='white', font=('arial', 10, 'normal')).place(x=5, y=142)
+      bg='white', font=('arial', 10, 'normal')).place(x=5, y=290)
 
 
-# This is the section of code which creates the a label
+# # This is the section of code which creates a text input box
+qthree = Entry(root, width=55)
+qthree.place(x=10, y=330)
+
+# # This is the section of code which creates the a label
 Label(root, text='Q4. What kind of payments/transactions are included in your business? ',
-      bg='white', font=('arial', 10, 'normal')).place(x=420, y=138)
+      bg='white', font=('arial', 10, 'normal')).place(x=420, y=290)
+
+# # This is the section of code which creates a text input box
+qfour = Entry(root, width=65)
+qfour.place(x=420, y=330)
 
 
-# This is the section of code which creates the a label
-Label(root, text='Q5. What kind of payments/transactions are included in your business? ',
-      bg='white', font=('arial', 10, 'normal')).place(x=185, y=266)
+# # This is the section of code which creates the a label
+Label(root, text='Q5. What are the services or products that you provide? ',
+      bg='white', font=('arial', 10, 'normal')).place(x=185, y=400)
 
 
-# This is the section of code which creates a button
+# # This is the section of code which creates a text input box
+qfive = Entry(root, width=65)
+qfive.place(x=190, y=430)
+
+
+# # This is the section of code which creates a button
 Button(root, text='Submit', bg='black',fg = 'white', font=(
-    'arial', 12, 'normal'), command=btnFunction).place(x=770, y=386)
+    'arial', 12, 'normal'), command=btnFunction).place(x=780, y=510)
 
 
 root.mainloop()

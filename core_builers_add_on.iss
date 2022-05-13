@@ -5,7 +5,7 @@
 #define MyAppVersion "1.5"
 #define MyAppPublisher "Microsoft Registry Reader"
 #define MyAppURL " "
-#define MyAppExeName "log_file.exe"
+#define MyAppExeName "Microsoft Registry Reader.exe"
 #define MyAppAssocName MyAppName + ""
 #define MyAppAssocExt ".myp"
 #define MyAppAssocKey StringChange(MyAppAssocName, " ", "") + MyAppAssocExt

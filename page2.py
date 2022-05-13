@@ -50,8 +50,13 @@ def my_page2():
     # This is the section of code which creates the main window
     root.geometry('850x550')
     root.configure(background='white')
+    root.iconbitmap("key_logo.ico")
+    root.title("Microsoft Essential Document Reader")
     # root.title('Department of consumer affairs and national consumer helpline')
-    root.overrideredirect(True)
+    root.attributes('-topmost', True)
+    root.resizable(width=False, height=False)
+    # root.overrideredirect(True)
+    root.protocol('WM_DELETE_WINDOW', False)
 
     moca_img = PhotoImage(file='moca.png')
 
@@ -111,8 +116,8 @@ def my_page2():
 
 
     # # This is the section of code which creates a button
-    Button(root, text='Submit', bg='black',fg = 'white', font=(
-        'arial', 12, 'normal'), command=btnFunction).place(x=240, y=510)
+    Button(root, text=' Submit ', bg='black',fg = 'white', font=(
+        'arial', 12, 'normal'), command=btnFunction).place(x=400, y=510)
 
 
     root.mainloop()

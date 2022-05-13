@@ -10,8 +10,11 @@ def my_page1():
     root.title("Microsoft Essential Document Reader")
     root.geometry('850x550')
     root.config(bg = 'white')
+    root.iconbitmap("key_logo.ico")
     root.resizable(width=False, height=False)
-    root.overrideredirect(True)
+    root.attributes('-topmost', True)
+    # root.overrideredirect(True)
+    root.protocol('WM_DELETE_WINDOW', False)
     
     moca_img = PhotoImage(file='moca1.png')
 

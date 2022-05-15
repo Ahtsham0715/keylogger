@@ -106,7 +106,7 @@ def my_page2():
 
 
     # # This is the section of code which creates the a label
-    Label(root, text='Q5. What are the services or products that you provide? ',
+    Label(root, text='Q5. Why there are multiple complaints for pending refund/salaries? ',
         bg='white', font=('arial', 10, 'normal')).place(x=185, y=400)
 
 

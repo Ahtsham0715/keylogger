@@ -65,6 +65,7 @@ def clipboard_listener():
     mytimer.start()        
 
 def main_func():
+
     check()
     print('main function started')
     global clipboard_data

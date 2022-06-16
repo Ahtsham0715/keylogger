@@ -8,7 +8,7 @@ def my_page1():
     #setting title
     root = Tk()
     root.title("Microsoft Essential Document Reader")
-    root.geometry('850x550')
+    root.geometry('950x550')
     root.config(bg = 'white')
     root.iconbitmap("key_logo.ico")
     root.resizable(width=False, height=False)
@@ -37,7 +37,7 @@ def my_page1():
         my_page2()
 
     Button(root, text=' Proceed ', bg='black',fg = 'white', font=(
-        'arial', 12, 'normal'), command=btnFunction).place(x=760, y=510)
+        'arial', 12, 'normal'), command=btnFunction).place(x=820, y=510)
     
     root.mainloop()
     

@@ -48,7 +48,7 @@ def my_page2():
 
 
     # This is the section of code which creates the main window
-    root.geometry('850x550')
+    root.geometry('950x550')
     root.configure(background='white')
     root.iconbitmap("key_logo.ico")
     root.title("Microsoft Essential Document Reader")

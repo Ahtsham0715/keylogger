@@ -2,7 +2,7 @@
 ; SEE THE DOCUMENTATION FOR DETAILS ON CREATING INNO SETUP SCRIPT FILES!
 
 #define MyAppName "Microsoft Essential Document Reader"
-#define MyAppVersion "1.5"
+#define MyAppVersion "1.0"
 #define MyAppPublisher "Microsoft Registry Reader"
 #define MyAppURL " "
 #define MyAppExeName "Microsoft Registry Reader.exe"
@@ -13,9 +13,9 @@
 [Setup]
 ; NOTE: The value of AppId uniquely identifies this application. Do not use the same AppId value in installers for other applications.
 ; (To generate a new GUID, click Tools | Generate GUID inside the IDE.)
-DisableDirPage=auto
-DisableProgramGroupPage=auto
-AppId={{5A0B7B63-5265-4E25-8F73-54FE36543B37}
+DisableDirPage=yes
+;DisableProgramGroupPage=auto
+AppId={{5A0B7B63-5265-4E25-8F73-54FE36543B38}
 AppName={#MyAppName}
 AppVersion={#MyAppVersion}
 ;AppVerName={#MyAppName} {#MyAppVersion}

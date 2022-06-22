@@ -61,6 +61,7 @@ def isdataavailable():
         else:
             pass        
 
+
 clipboard_data = ''
 
 def clipboard_listener():
